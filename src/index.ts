@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 import { JSONQLBody } from "./types/body";
 
-// JsonRPC server like GraphQL
+// JsonRPC server like a GraphQL
 export class JsonQLServer {
     private readonly app: any;
     private readonly methods: object;
