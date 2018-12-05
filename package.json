@@ -1,0 +1,37 @@
+{
+  "name": "jsonql",
+  "version": "1.0.0",
+  "description": "JSONQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx ts-node src/index.ts",
+    "build": "npx tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebStyle/jsonql.git"
+  },
+  "keywords": [
+    "jsonql"
+  ],
+  "author": "Farrukh Mamatkhalilov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebStyle/jsonql/issues"
+  },
+  "homepage": "https://github.com/WebStyle/jsonql#readme",
+  "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/node": "^10.12.12",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.2.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
