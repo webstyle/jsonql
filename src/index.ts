@@ -36,7 +36,13 @@ export class JsonQLServer {
     setFields(fields: string[], result: Object | any[]) {
         // Array
         if (Array.isArray(result)) {
-            return false;
+            let arr = [];
+            result.forEach(item => {
+                let object = {};
+                fields.forEach(field => object[field] = item[field]);
+                arr.push(object)
+            });
+            return arr;
         }
 
         // Object
@@ -52,6 +58,9 @@ const app = new JsonQLServer({
     'add': async ({ params, fields }) => {
         const { a, b } = params;
         return { a, b, data: a + b, name: 'Farrukh'+ a+b };
+    },
+    'list': async ({params, fields}) => {
+        return [{ name: 'Martin', id: 1 }, { name: 'John Doe', id: 2 }];
     }
 });
 app.listen(3000);
