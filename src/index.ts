@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 const bodyParser = require('body-parser');
 
 import { JSONQLBody } from "./types/body";
+import { JSONQLType } from "./decorators/JSONQLType";
 
 // JsonRPC server like a GraphQL
 export class JsonQLServer {
@@ -27,6 +28,7 @@ export class JsonQLServer {
                 .then(result => res.json(this.setFields(body.fields, result)))
                 .catch(error => res.json({ message: error.message }));
         });
+        this.app.get('/methods', (req: Request, res: Response) => res.json({ methods: Object.keys(this.methods) }));
     }
 
     listen(port: number) {
@@ -51,6 +53,12 @@ export class JsonQLServer {
         return data;
     }
 
+}
+
+@JSONQLType
+class AddInput {
+    a: number;
+    b: number;
 }
 
 // Quick example
