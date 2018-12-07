@@ -1,7 +1,8 @@
-const store = [];
+const Store = require('data-store');
+const store = new Store({ path: 'types.json' });
 
-export function JSONQLType(constructor: Function) {
-    Object.seal(constructor);
-    Object.seal(constructor.prototype);
-    console.log(constructor);
+
+export function JSONQLType(target: any) {
+    const original = target;
+    console.log(target);
 }

@@ -24,7 +24,7 @@ export class JsonQLServer {
             }
             const method: Function = this.methods[body.method];
 
-            return method(body)
+            return method(body.params, body.fields)
                 .then(result => res.json(this.setFields(body.fields, result)))
                 .catch(error => res.json({ message: error.message }));
         });
@@ -63,7 +63,7 @@ class AddInput {
 
 // Quick example
 const app = new JsonQLServer({
-    'add': async ({ params, fields }) => {
+    'add': async (params: AddInput, fields: string[]) => {
         const { a, b } = params;
         return { a, b, data: a + b, name: 'Farrukh'+ a+b };
     },
