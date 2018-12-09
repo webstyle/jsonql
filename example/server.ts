@@ -1,9 +1,10 @@
-import { JsonQLServer, JSONQLType } from "../src";
+import "reflect-metadata";
+import { JsonQLServer, JSONQLType, Field } from "../src";
 
 @JSONQLType
 class AddInput {
-    a: number;
-    b: number;
+    @Field() a: number;
+    @Field() b: string;
 }
 
 // Quick example

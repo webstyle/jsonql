@@ -1,8 +1,11 @@
 import express = require('express');
 import { Request, Response } from "express";
 const bodyParser = require('body-parser');
+const Store = require('data-store');
 
 import { JSONQLBody } from "../types/body";
+
+const store = new Store({ path: '../types.json' });
 
 // JsonRPC server like a GraphQL
 export class JsonQLServer {
@@ -11,6 +14,7 @@ export class JsonQLServer {
 
     constructor(methods: object) {
         this.app = express();
+        this.app.use(require('express-status-monitor')());
         this.app.use(bodyParser.json());
 
         this.methods = methods;
@@ -27,7 +31,7 @@ export class JsonQLServer {
                 .then(result => res.json(this.setFields(body.fields, result)))
                 .catch(error => res.json({ message: error.message }));
         });
-        this.app.get('/methods', (req: Request, res: Response) => res.json({ methods: Object.keys(this.methods) }));
+        this.app.get('/methods', (req: Request, res: Response) => res.json(store.data));
     }
 
     listen(port: number) {
