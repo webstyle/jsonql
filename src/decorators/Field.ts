@@ -2,6 +2,7 @@ import "reflect-metadata";
 
 import { FieldInnerConfig } from "../types/FieldInnerConfig";
 import { JSONQLTypeConfig } from "../types/JSONQLTypeConfig";
+import { SetType, Types } from "../store";
 
 const Store = require('data-store');
 const store = new Store({ path: '../types.json' });

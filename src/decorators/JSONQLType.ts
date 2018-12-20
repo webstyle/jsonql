@@ -1,15 +1,10 @@
 import "reflect-metadata";
-import { JSONQLTypeConfig } from "../types/JSONQLTypeConfig";
-
-const Store = require('data-store');
-const store = new Store({ path: '../types.json' });
+import { SetType } from "../store";
 
 
 export function JSONQLType(target: Function) {
-        const type: JSONQLTypeConfig = {
-            name: target.name,
-            target,
-            fields: [],
-        };
-        store.set(target.name, type);
+    SetType(target.name, {
+        name: target.name,
+        fields: [],
+    });
 }
