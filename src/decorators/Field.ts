@@ -2,7 +2,7 @@ import "reflect-metadata";
 
 import { FieldInnerConfig } from "../types/FieldInnerConfig";
 import { JSONQLTypeConfig } from "../types/JSONQLTypeConfig";
-import { SetType, Types } from "../store";
+import { typeStore } from "../store";
 
 const Store = require('data-store');
 const store = new Store({ path: '../types.json' });
@@ -17,11 +17,6 @@ export function Field(options?: Object): PropertyDecorator {
             ...options,
         };
 
-        const typeConfig: JSONQLTypeConfig = store.get(targetInstance.constructor.name);
-        typeConfig.fields.push(finalConfig);
-        store.set(targetInstance.constructor.name, typeConfig);
-
-
-        console.log(store.get(targetInstance.constructor.name));
+        typeStore.setField(finalConfig, targetInstance.constructor.name);
     };
 }

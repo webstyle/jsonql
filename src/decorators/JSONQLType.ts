@@ -1,10 +1,7 @@
 import "reflect-metadata";
-import { SetType } from "../store";
+import { typeStore } from "../store";
 
 
 export function JSONQLType(target: Function) {
-    SetType(target.name, {
-        name: target.name,
-        fields: [],
-    });
+    typeStore.setJsonQLType(target.name);
 }

@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const Store = require('data-store');
 
 import { JSONQLBody } from "../types/body";
-import { Types } from "../store";
+import { typeStore } from '../store';
 
 const store = new Store({ path: '../types.json' });
 
@@ -32,7 +32,7 @@ export class JsonQLServer {
                 .then(result => res.json(this.setFields(body.fields, result)))
                 .catch(error => res.json({ message: error.message }));
         });
-        this.app.get('/methods', (req: Request, res: Response) => res.json(Types));
+        this.app.get('/methods', (req: Request, res: Response) => res.json(typeStore.data));
     }
 
     listen(port: number) {
