@@ -4,4 +4,5 @@ export interface FieldInnerConfig {
     description?: string;
     isNullable?: boolean;
     type?: any;
+    typeName?: any;
 }

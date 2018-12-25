@@ -9,11 +9,13 @@ const store = new Store({ path: '../types.json' });
 
 export function Field(options?: Object): PropertyDecorator {
     return (targetInstance: Object, fieldName: string) => {
+        const type = Reflect.getMetadata("design:type", targetInstance, fieldName)
         const finalConfig: FieldInnerConfig = {
             property: fieldName,
             name: fieldName,
             isNullable: true,
-            type: Reflect.getMetadata("design:type", targetInstance, fieldName).name,
+            type: type.toString(),
+            typeName: Reflect.getMetadata("design:type", targetInstance, fieldName).name,
             ...options,
         };
 
